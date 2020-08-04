@@ -285,9 +285,9 @@ namespace Dashboard
 
             Console.WriteLine("Informe a Nova Marca");
             string nomeMarca = Console.ReadLine();
-            bool seExiste = marcas.Where(X=>X.Nome == nomeMarca).Any();
+            bool Existe = marcas.Where(X=>X.Nome == nomeMarca).Any();
 
-            if (seExiste)
+            if (Existe)
             {
                 Console.WriteLine("ESSA MARCA JA EXISTE, ADICIONE UMA DIFERENTE");
                 Console.ReadKey();
@@ -302,9 +302,7 @@ namespace Dashboard
                 idMarca = ++maiorId;
             }
 
-            
             Marca novaMarca = new Marca(idMarca,nomeMarca);
-            
 
             marcas.Add(novaMarca);
 
