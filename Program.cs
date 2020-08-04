@@ -257,5 +257,14 @@ namespace Dashboard
 
             MostrarInventario(print);
         }
+        private static void SHOW(Categoria categoriaSelecionada, List<Produto> inventario)
+        {
+            Console.Clear();
+            Console.WriteLine("Mostrar Por Categoria\n");
+
+            var print = inventario.Where(X => X.Categoria == categoriaSelecionada);
+
+            MostrarInventario(print);
+        }
     }
 }
