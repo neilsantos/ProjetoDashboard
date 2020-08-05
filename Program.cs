@@ -38,38 +38,64 @@ namespace Dashboard
             while (op!="0")
             {
                 Console.Clear();
-                Console.WriteLine("\n\n1 - Cadastrar Produto\n");
-                Console.WriteLine("2 - Contar Inventario\n ");
-                Console.WriteLine("3 - Exibir Itens\n ");
-                Console.WriteLine("4 - Listar Inventário\n\n");
-                Console.WriteLine("5 - Mostrar por Categoria\n\n");
-                Console.WriteLine("6 - Mostrar por Marca\n\n");
+                Console.WriteLine("\n\n1 - Cadastrar Marca\n");
+                Console.WriteLine("2 - Cadastrar Categoria\n");
+                Console.WriteLine("3 - Cadastrar Produto\n ");
+                Console.WriteLine("4 - Exibir Marcas e Categorias\n ");
+                Console.WriteLine("5 - Listar Inventário\n");
+                Console.WriteLine("6 - Mostrar por Categoria\n");
+                Console.WriteLine("7 - Mostrar por Marca\n");
+                Console.WriteLine("8 - Contar Inventario\n");
+              
                 Console.WriteLine("Escolha uma opção: ");
                 op = Console.ReadLine();
 
                 switch (op)
                 {
                     case "1":
-                        CadastrarProduto(marcas,categorias,inventario);
+                        Console.Clear();
+                        Console.WriteLine("Cadastrar Marca \n");
+                        Mostrar(marcas);
+                        CadastrarMarca(marcas);
                         break;
 
                     case "2":
-                        ContarInventario(inventario);
-                        Console.ReadKey();
+                        
+                        Console.Clear();
+                        Console.WriteLine("Cadastrar Categoria \n");
+                        Mostrar(categorias);
+                        CadastrarCategoria(categorias);
                         break;
+
                     case "3":
+                        CadastrarProduto(marcas,categorias,inventario);
+                        break;
+
+                    case "4":
                         Console.Clear();
                         Mostrar(categorias);
                         Mostrar(marcas);
                         Console.ReadKey();
                         break;
-                    case "4":
-                        MostrarInventario(inventario);
-                        break;
+
                     case "5":
+                        MostrarInventario(inventario);
+                        Console.ReadKey();
+                        break;
+
+                    case "6":
                         var categoria = LerCategoria(categorias);
                         MostrarPor(categoria, inventario);
                         break;
+                    case "7":
+
+                      
+                        break;
+
+                    case "8":
+                        ContarInventario(inventario);
+                        break;
+
                     default: 
                         Console.WriteLine("OPÇAO INVALIDA, ESCOLHA SOMENTE OS ITENS ACIMA");
                         Console.ReadKey();
@@ -256,14 +282,59 @@ namespace Dashboard
 
             MostrarInventario(print);
         }
-        private static void SHOW(Categoria categoriaSelecionada, List<Produto> inventario)
+        private static void CadastrarMarca(List<Marca> marcas)
         {
-            Console.Clear();
-            Console.WriteLine("Mostrar Por Categoria\n");
+            Console.WriteLine("Informe a Nova Marca");
+            string nomeMarca = Console.ReadLine();
+            bool Existe = marcas.Where(X=>X.Nome == nomeMarca).Any();
 
-            var print = inventario.Where(X => X.Categoria == categoriaSelecionada);
+            if (Existe)
+            {
+                Console.WriteLine("ESSA MARCA JA EXISTE, ADICIONE UMA DIFERENTE");
+                Console.ReadKey();
+                return;
+            }
 
-            MostrarInventario(print);
+            int idMarca=0;
+
+            if (marcas.Any())
+            {
+                int maiorId = marcas.Max(X => X.Id);
+                idMarca = ++maiorId;
+            }
+
+            Marca novaMarca = new Marca(idMarca,nomeMarca);
+
+            marcas.Add(novaMarca);
+
+        }
+        private static void CadastrarCategoria(List<Categoria> categorias)
+        {
+            
+
+            Console.WriteLine("Informe a Nova Marca");
+            string nomeCategoria = Console.ReadLine();
+            bool Existe = categorias.Where(X => X.Nome == nomeCategoria).Any();
+
+            if (Existe)
+            {
+                Console.WriteLine("ESSA MARCA JA EXISTE, ADICIONE UMA DIFERENTE");
+                Console.ReadKey();
+                return;
+            }
+
+            int idCategoria = 0;
+
+            if (categorias.Any())
+            {
+                int maiorId = categorias.Max(X => X.Id);
+                idCategoria = ++maiorId;
+            }
+
+            Categoria novaCategoria = new Categoria(idCategoria, nomeCategoria);
+
+            categorias.Add(novaCategoria);
+
         }
     }
 }
