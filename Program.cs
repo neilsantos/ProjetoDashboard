@@ -54,10 +54,17 @@ namespace Dashboard
                 switch (op)
                 {
                     case "1":
+                        Console.Clear();
+                        Console.WriteLine("Cadastrar Marca \n");
+                        Mostrar(marcas);
                         CadastrarMarca(marcas);
                         break;
 
                     case "2":
+                        
+                        Console.Clear();
+                        Console.WriteLine("Cadastrar Categoria \n");
+                        Mostrar(categorias);
                         CadastrarCategoria(categorias);
                         break;
 
@@ -278,11 +285,6 @@ namespace Dashboard
         }
         private static void CadastrarMarca(List<Marca> marcas)
         {
-            Console.Clear();
-            Console.WriteLine("Cadastrar Marca \n");
-            
-            Mostrar(marcas);
-
             Console.WriteLine("Informe a Nova Marca");
             string nomeMarca = Console.ReadLine();
             bool Existe = marcas.Where(X=>X.Nome == nomeMarca).Any();
@@ -309,6 +311,30 @@ namespace Dashboard
         }
         private static void CadastrarCategoria(List<Categoria> categorias)
         {
+            
+
+            Console.WriteLine("Informe a Nova Marca");
+            string nomeCategoria = Console.ReadLine();
+            bool Existe = categorias.Where(X => X.Nome == nomeCategoria).Any();
+
+            if (Existe)
+            {
+                Console.WriteLine("ESSA MARCA JA EXISTE, ADICIONE UMA DIFERENTE");
+                Console.ReadKey();
+                return;
+            }
+
+            int idCategoria = 0;
+
+            if (categorias.Any())
+            {
+                int maiorId = categorias.Max(X => X.Id);
+                idCategoria = ++maiorId;
+            }
+
+            Categoria novaCategoria = new Categoria(idCategoria, nomeCategoria);
+
+            categorias.Add(novaCategoria);
 
         }
     }
