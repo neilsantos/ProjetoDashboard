@@ -339,8 +339,14 @@ namespace Dashboard
         private static void Deletar(List<Categoria> categorias)
         {
 
+            
+            if (!categorias.Any())
+            {
+                Console.WriteLine("Nenhum item em categoria");
+                return;
+            }
             Console.WriteLine("Informe o ID a ser deletado");
-            bool eValido = int.TryParse(Console.ReadLine(),out int id);
+            bool eValido = int.TryParse(Console.ReadLine(), out int id);
             if (!eValido)
             {
                 Console.WriteLine("ID Não Encontrado, escolha um item da lista");
@@ -348,12 +354,22 @@ namespace Dashboard
                 return;
             }
             var confirmar = categorias.FirstOrDefault(X => X.Id == id);
-         
-            Console.WriteLine("ID:" + confirmar.Id);
-            Console.WriteLine("Nome" + confirmar.Nome);
 
-            
-           
+            Console.WriteLine("ID: " + confirmar.Id);
+            Console.WriteLine("Nome " + confirmar.Nome);
+
+            string op = "";
+            Console.WriteLine("Deseja Excluir?");
+            op = Console.ReadLine();
+            op.ToUpper();
+            if (op == "S")
+            {
+                categorias.RemoveAt(confirmar.Id);
+            }
+            if (op == "F")
+            {
+                return;
+            }
 
 
         }
