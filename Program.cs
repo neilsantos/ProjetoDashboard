@@ -88,12 +88,12 @@ namespace Dashboard
                         MostrarPor(categoria, inventario);
                         break;
                     case "7":
-
-                      
+                        ContarInventario(inventario);
                         break;
 
                     case "8":
-                        ContarInventario(inventario);
+                        Mostrar(categorias);
+                        Deletar(categorias);
                         break;
 
                     default: 
@@ -272,7 +272,6 @@ namespace Dashboard
                 Console.WriteLine(inventario.Count());  
 
         }
-        
         private static void MostrarPor(Categoria categoriaSelecionada, List<Produto> inventario)
         {
             Console.Clear();
@@ -336,5 +335,30 @@ namespace Dashboard
             categorias.Add(novaCategoria);
 
         }
+        
+        private static void Deletar(List<Categoria> categorias)
+        {
+
+            Console.WriteLine("Informe o ID a ser deletado");
+            bool eValido = int.TryParse(Console.ReadLine(),out int id);
+            if (!eValido)
+            {
+                Console.WriteLine("ID Não Encontrado, escolha um item da lista");
+                Console.ReadKey();
+                return;
+            }
+            var confirmar = categorias.FirstOrDefault(X => X.Id == id);
+         
+            Console.WriteLine("ID:" + confirmar.Id);
+            Console.WriteLine("Nome" + confirmar.Nome);
+
+            
+           
+
+
+        }
+
+
+
     }
 }
