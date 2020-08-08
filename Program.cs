@@ -374,7 +374,10 @@ namespace Dashboard
 
         }
 
+        private static void Atualizar(List<Categoria> categorias)
+        {
 
+        }
 
     }
 }
