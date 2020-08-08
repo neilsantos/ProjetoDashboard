@@ -26,6 +26,15 @@ namespace Dashboard
 
         }
 
+        public void Criar()
+        {
+        
+        }
+
+        public void Editar() { }
+        public void Excluir() { }
+        public void Listar () { }
+
 
     }
 
