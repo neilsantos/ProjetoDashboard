@@ -45,7 +45,8 @@ namespace Dashboard
                 Console.WriteLine("5 - Listar Inventário\n");
                 Console.WriteLine("6 - Mostrar por Categoria\n");
                 Console.WriteLine("7 - Mostrar por Marca\n");
-                Console.WriteLine("8 - Contar Inventario\n");
+                Console.WriteLine("8 - Remover Categoria\n");
+                Console.WriteLine("9 - Remover Marca\n");
               
                 Console.WriteLine("Escolha uma opção: ");
                 op = Console.ReadLine();
@@ -361,12 +362,12 @@ namespace Dashboard
             string op = "";
             Console.WriteLine("Deseja Excluir?");
             op = Console.ReadLine();
-            op.ToUpper();
+            op = op.ToUpper();
             if (op == "S")
             {
-                categorias.RemoveAt(confirmar.Id);
+                categorias.Remove(confirmar);
             }
-            if (op == "F")
+            if (op == "N")
             {
                 return;
             }
