@@ -13,5 +13,6 @@ namespace Dashboard
             Id = id;
             Nome = nome;
         }
+
     }
 }

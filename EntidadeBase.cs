@@ -7,5 +7,10 @@ namespace Dashboard
     class EntidadeBase
     {
         public int Id { get; set; }
+
+        
+
     }
+
+    
 }

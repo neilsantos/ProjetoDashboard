@@ -34,7 +34,6 @@ namespace Dashboard
             };
 
             //Menu
-            //dfgsg\dg\sg
             string op="1";
             while (op!="0")
             {
@@ -89,12 +88,12 @@ namespace Dashboard
                         MostrarPor(categoria, inventario);
                         break;
                     case "7":
-
-                      
+                        ContarInventario(inventario);
                         break;
 
                     case "8":
-                        ContarInventario(inventario);
+                        Mostrar(categorias);
+                        Deletar(categorias);
                         break;
 
                     default: 
@@ -273,7 +272,6 @@ namespace Dashboard
                 Console.WriteLine(inventario.Count());  
 
         }
-        
         private static void MostrarPor(Categoria categoriaSelecionada, List<Produto> inventario)
         {
             Console.Clear();
@@ -337,5 +335,46 @@ namespace Dashboard
             categorias.Add(novaCategoria);
 
         }
+        
+        private static void Deletar(List<Categoria> categorias)
+        {
+
+            
+            if (!categorias.Any())
+            {
+                Console.WriteLine("Nenhum item em categoria");
+                return;
+            }
+            Console.WriteLine("Informe o ID a ser deletado");
+            bool eValido = int.TryParse(Console.ReadLine(), out int id);
+            if (!eValido)
+            {
+                Console.WriteLine("ID Não Encontrado, escolha um item da lista");
+                Console.ReadKey();
+                return;
+            }
+            var confirmar = categorias.FirstOrDefault(X => X.Id == id);
+
+            Console.WriteLine("ID: " + confirmar.Id);
+            Console.WriteLine("Nome " + confirmar.Nome);
+
+            string op = "";
+            Console.WriteLine("Deseja Excluir?");
+            op = Console.ReadLine();
+            op.ToUpper();
+            if (op == "S")
+            {
+                categorias.RemoveAt(confirmar.Id);
+            }
+            if (op == "F")
+            {
+                return;
+            }
+
+
+        }
+
+
+
     }
 }
