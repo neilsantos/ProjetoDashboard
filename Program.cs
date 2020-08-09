@@ -336,7 +336,6 @@ namespace Dashboard
             categorias.Add(novaCategoria);
 
         }
-        
         private static void Deletar(List<Categoria> categorias)
         {
 
@@ -374,7 +373,44 @@ namespace Dashboard
 
 
         }
+        private static void Deletar(List<Marca> marcas)
+        {
 
+
+            if (!marcas.Any())
+            {
+                Console.WriteLine("Nenhum item em categoria");
+                return;
+            }
+            Console.WriteLine("Informe o ID a ser deletado");
+            bool eValido = int.TryParse(Console.ReadLine(), out int id);
+            if (!eValido)
+            {
+                Console.WriteLine("ID Não Encontrado, escolha um item da lista");
+                Console.ReadKey();
+                return;
+            }
+            var confirmar = marcas.FirstOrDefault(X => X.Id == id);
+
+            Console.WriteLine("ID: " + confirmar.Id);
+            Console.WriteLine("Nome " + confirmar.Nome);
+
+            string op = "";
+            Console.WriteLine("Deseja Excluir?");
+            op = Console.ReadLine();
+            op = op.ToUpper();
+            if (op == "S")
+            {
+                marcas.Remove(confirmar);
+            }
+            if (op == "N")
+            {
+                return;
+            }
+
+
+        }
+        
 
 
     }
