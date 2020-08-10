@@ -375,8 +375,6 @@ namespace Dashboard
         }
         private static void Deletar(List<Marca> marcas)
         {
-
-
             if (!marcas.Any())
             {
                 Console.WriteLine("Nenhum item em categoria");
@@ -391,7 +389,7 @@ namespace Dashboard
                 return;
             }
             var confirmar = marcas.FirstOrDefault(X => X.Id == id);
-
+        
             Console.WriteLine("ID: " + confirmar.Id);
             Console.WriteLine("Nome " + confirmar.Nome);
 
@@ -408,10 +406,8 @@ namespace Dashboard
                 return;
             }
 
-
         }
         
-
 
     }
 }
