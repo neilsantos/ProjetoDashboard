@@ -45,7 +45,8 @@ namespace Dashboard
                 Console.WriteLine("5 - Listar Inventário\n");
                 Console.WriteLine("6 - Mostrar por Categoria\n");
                 Console.WriteLine("7 - Mostrar por Marca\n");
-                Console.WriteLine("8 - Contar Inventario\n");
+                Console.WriteLine("8 - Remover Categoria\n");
+                Console.WriteLine("9 - Remover Marca\n");
               
                 Console.WriteLine("Escolha uma opção: ");
                 op = Console.ReadLine();
@@ -335,7 +336,6 @@ namespace Dashboard
             categorias.Add(novaCategoria);
 
         }
-        
         private static void Deletar(List<Categoria> categorias)
         {
 
@@ -361,21 +361,61 @@ namespace Dashboard
             string op = "";
             Console.WriteLine("Deseja Excluir?");
             op = Console.ReadLine();
-            op.ToUpper();
+            op = op.ToUpper();
             if (op == "S")
             {
-                categorias.RemoveAt(confirmar.Id);
+                categorias.Remove(confirmar);
             }
-            if (op == "F")
+            if (op == "N")
             {
                 return;
             }
 
 
         }
+        private static void Deletar(List<Marca> marcas)
+        {
 
+
+            if (!marcas.Any())
+            {
+                Console.WriteLine("Nenhum item em categoria");
+                return;
+            }
+            Console.WriteLine("Informe o ID a ser deletado");
+            bool eValido = int.TryParse(Console.ReadLine(), out int id);
+            if (!eValido)
+            {
+                Console.WriteLine("ID Não Encontrado, escolha um item da lista");
+                Console.ReadKey();
+                return;
+            }
+            var confirmar = marcas.FirstOrDefault(X => X.Id == id);
+
+<<<<<<< HEAD
         private static void Atualizar(List<Categoria> categorias)
         {
+=======
+            Console.WriteLine("ID: " + confirmar.Id);
+            Console.WriteLine("Nome " + confirmar.Nome);
+
+            string op = "";
+            Console.WriteLine("Deseja Excluir?");
+            op = Console.ReadLine();
+            op = op.ToUpper();
+            if (op == "S")
+            {
+                marcas.Remove(confirmar);
+            }
+            if (op == "N")
+            {
+                return;
+            }
+
+
+        }
+        
+>>>>>>> 52e4939a1e0f2f9e9ba5dd74191d135f5c2c20d2
 
         }
 
