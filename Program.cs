@@ -46,7 +46,7 @@ namespace Dashboard
                 Console.WriteLine("6 - Mostrar por Categoria\n");
                 Console.WriteLine("7 - Mostrar por Marca\n");
                 Console.WriteLine("8 - Remover Categoria\n");
-                Console.WriteLine("9 - Remover Marca\n");
+                Console.WriteLine("9 - Atualizar Categoria\n");
               
                 Console.WriteLine("Escolha uma opção: ");
                 op = Console.ReadLine();
@@ -95,6 +95,13 @@ namespace Dashboard
                     case "8":
                         Mostrar(categorias);
                         Deletar(categorias);
+                        break;
+                    
+                    case "9":
+                        Console.Clear();
+                        Mostrar(categorias);
+                        Atualizar(categorias);
+
                         break;
 
                     default: 
@@ -380,15 +387,7 @@ namespace Dashboard
                 Console.WriteLine("Nenhum item em categoria");
                 return;
             }
-            Console.WriteLine("Informe o ID a ser deletado");
-            bool eValido = int.TryParse(Console.ReadLine(), out int id);
-            if (!eValido)
-            {
-                Console.WriteLine("ID Não Encontrado, escolha um item da lista");
-                Console.ReadKey();
-                return;
-            }
-            var confirmar = marcas.FirstOrDefault(X => X.Id == id);
+            var confirmar = LerMarca(marcas);
         
             Console.WriteLine("ID: " + confirmar.Id);
             Console.WriteLine("Nome " + confirmar.Nome);
@@ -408,6 +407,30 @@ namespace Dashboard
 
         }
         
+       private static void Atualizar(List<Categoria> categorias)
+        {
+           
+            var item = LerCategoria(categorias);
+            Console.WriteLine("Informe o Novo nome: ");
+            string novoNome = Console.ReadLine();
+            Console.WriteLine("Atualizar:\n");
+            Console.WriteLine("ID "+ item.Id);
+            Console.WriteLine("Nome "+ novoNome +"\n");
+            Console.WriteLine("CONFIRMA? (S / N) \n");
+            string opcao = Console.ReadLine();
+            opcao = opcao.ToUpper();
+            if (opcao == "N")
+            {
+                return;
+            }
+            if (opcao == "S")
+            {
+                item.Nome = novoNome;
+                Console.WriteLine("Alterado com sucesso!");
+                Console.ReadKey();
+                
+            }
+        }
 
     }
 }
